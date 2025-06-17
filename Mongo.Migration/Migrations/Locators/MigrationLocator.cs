@@ -107,21 +107,7 @@ public abstract class MigrationLocator<TMigrationType> : IMigrationLocator<TMigr
 
     private TMigrationType GetMigrationInstance(Type type)
     {
-        ConstructorInfo[] constructors = type.GetConstructors();
-
-        if (constructors.Length > 0)
-        {
-            var args = constructors
-                .First()
-                .GetParameters()
-                .Select(parameterInfo => _serviceProvider.GetRequiredService(parameterInfo.ParameterType))
-                .ToArray();
-
-            return Activator.CreateInstance(type, args) as TMigrationType
-                   ?? throw new InvalidOperationException($"Cannot create {type} migration");
-        }
-
-        return Activator.CreateInstance(type) as TMigrationType
+        return ActivatorUtilities.CreateInstance(_serviceProvider, type) as TMigrationType
                ?? throw new InvalidOperationException($"Cannot create {type} migration");
     }
 }
