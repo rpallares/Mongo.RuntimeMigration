@@ -16,14 +16,14 @@ jobs:
       packages: write
       contents: read
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-dotnet@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-dotnet@v5
     - name: Set VERSION variable from tag
       run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
     - name: Build
       run: dotnet build -c Release /p:Version=${VERSION}
     - name: Test
-      run: dotnet test -c Release /p:Version=${VERSION} --no-build --framework net9.0
+      run: dotnet test -c Release /p:Version=${VERSION} --no-build --framework net10.0
     - name: Pack
       run: dotnet pack -c Release /p:Version=${VERSION} --no-build --output .
     - name: Push

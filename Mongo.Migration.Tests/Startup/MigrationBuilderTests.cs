@@ -26,12 +26,12 @@ internal class MigrationBuilderTests
 
         MongoMigrationStartupSettings startupSettings = provider.GetRequiredService<MongoMigrationStartupSettings>();
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(startupSettings.RuntimeMigrationEnabled, Is.True);
             Assert.That(startupSettings.DatabaseMigrationEnabled, Is.True);
             Assert.That(startupSettings.StartupDocumentMigrationEnabled, Is.True);
-        });
+        }
     }
 
     [Test]
@@ -45,7 +45,7 @@ internal class MigrationBuilderTests
 
         MongoMigrationStartupSettings startupSettings = provider.GetRequiredService<MongoMigrationStartupSettings>();
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(startupSettings.RuntimeMigrationEnabled, Is.True);
             Assert.That(startupSettings.DatabaseMigrationEnabled, Is.False);
@@ -57,7 +57,7 @@ internal class MigrationBuilderTests
             Assert.Throws<InvalidOperationException>(() => provider.GetRequiredService<ICollectionLocator>());
             Assert.Throws<InvalidOperationException>(() => provider.GetRequiredService<IStartUpDocumentMigrationRunner>());
             Assert.Throws<InvalidOperationException>(() => provider.GetRequiredService<IDatabaseMigrationRunner>());
-        });
+        }
     }
 
     [Test]
@@ -71,7 +71,7 @@ internal class MigrationBuilderTests
 
         MongoMigrationStartupSettings startupSettings = provider.GetRequiredService<MongoMigrationStartupSettings>();
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(startupSettings.RuntimeMigrationEnabled, Is.False);
             Assert.That(startupSettings.DatabaseMigrationEnabled, Is.True);
@@ -87,7 +87,7 @@ internal class MigrationBuilderTests
             Assert.Throws<InvalidOperationException>(() => provider.GetRequiredService<MigrationBsonSerializerProvider>());
             Assert.Throws<InvalidOperationException>(() => provider.GetRequiredService<ICollectionLocator>());
             Assert.Throws<InvalidOperationException>(() => provider.GetRequiredService<IStartUpDocumentMigrationRunner>());
-        });
+        }
     }
 
     [Test]
@@ -101,7 +101,7 @@ internal class MigrationBuilderTests
 
         MongoMigrationStartupSettings startupSettings = provider.GetRequiredService<MongoMigrationStartupSettings>();
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(startupSettings.RuntimeMigrationEnabled, Is.False);
             Assert.That(startupSettings.DatabaseMigrationEnabled, Is.False);
@@ -116,7 +116,7 @@ internal class MigrationBuilderTests
 
             Assert.Throws<InvalidOperationException>(() => provider.GetRequiredService<MigrationBsonSerializerProvider>());
             Assert.Throws<InvalidOperationException>(() => provider.GetRequiredService<IDatabaseMigrationRunner>());
-        });
+        }
     }
 
     private static IServiceCollection CreateEmptyServiceCollection()

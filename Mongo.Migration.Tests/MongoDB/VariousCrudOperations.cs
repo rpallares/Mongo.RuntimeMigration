@@ -62,8 +62,11 @@ public class VariousCrudOperations
             .Where(d => d.Doors >= 98)
             .Single();
 
-        Assert.That(documentById.Id, Is.EqualTo(id));
-        Assert.That(documentByExpression.Id, Is.EqualTo(id));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(documentById.Id, Is.EqualTo(id));
+            Assert.That(documentByExpression.Id, Is.EqualTo(id));
+        }
     }
 
     [Test]
@@ -95,8 +98,11 @@ public class VariousCrudOperations
             .Where(d => d.Id == id)
             .Single();
 
-        Assert.That(documentUpdated.Id, Is.EqualTo(id));
-        Assert.That(documentUpdated.Doors, Is.EqualTo(8));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(documentUpdated.Id, Is.EqualTo(id));
+            Assert.That(documentUpdated.Doors, Is.EqualTo(8));
+        }
     }
 
     [Test]

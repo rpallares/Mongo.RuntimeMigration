@@ -33,6 +33,6 @@ public class DocumentMigrationWhenCreating
         var migration = new TestDocumentWithOneMigration001();
 
         // Assert
-        Assert.That(migration, Is.TypeOf(typeof(TestDocumentWithOneMigration001)));
+        Assert.That(migration, Is.TypeOf<TestDocumentWithOneMigration001>());
     }
 }

@@ -38,45 +38,41 @@ public class InterceptorMigrationWhenCreating : IntegrationTest
         IMongoCollection<TestDocumentWithTwoMigrationMiddleVersion> testDocumentCollection =
             GetCollection<TestDocumentWithTwoMigrationMiddleVersion>();
 
-        await untypedCollection.InsertManyAsync(new[]
-        {
-            new BsonDocument
-            {
+        await untypedCollection.InsertManyAsync(
+        [
+            [
                 new("Doors0", new BsonInt32(0))
-            },
-            new BsonDocument
-            {
+            ],
+            [
                 new("Doors0", new BsonInt32(1)),
                 new("Version", new BsonString("0.0.0"))
-            },
-            new BsonDocument
-            {
+            ],
+            [
                 new("Doors1", new BsonInt32(2)),
                 new("Version", new BsonString("0.0.1"))
-            },
-            new BsonDocument
-            {
+            ],
+            [
                 new("Doors2", new BsonInt32(3)),
                 new("Version", new BsonString("0.0.2"))
-            }
-        });
+            ]
+        ]);
 
         var asyncCursor = await testDocumentCollection
             .FindAsync(FilterDefinition<TestDocumentWithTwoMigrationMiddleVersion>.Empty);
         List<TestDocumentWithTwoMigrationMiddleVersion> documents = await asyncCursor.ToListAsync();
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(documents, Has.Count.EqualTo(4));
             Assert.That(
                 documents.Select(d => d.Version.ToString()),
                 Is.All.EqualTo("0.0.1"));
 
-            Assert.That(documents[0].Doors1, Is.EqualTo(0));
+            Assert.That(documents[0].Doors1, Is.Zero);
             Assert.That(documents[1].Doors1, Is.EqualTo(1));
             Assert.That(documents[2].Doors1, Is.EqualTo(2));
             Assert.That(documents[3].Doors1, Is.EqualTo(3));
-        });
+        }
     }
 
     [Test]
@@ -106,45 +102,41 @@ public class InterceptorMigrationWhenCreating : IntegrationTest
         IMongoCollection<TestClassWithTwoMigrationMiddleVersion> testDocumentCollection =
             GetCollection<TestClassWithTwoMigrationMiddleVersion>();
 
-        await untypedCollection.InsertManyAsync(new[]
-        {
-            new BsonDocument
-            {
+        await untypedCollection.InsertManyAsync(
+        [
+            [
                 new("Doors0", new BsonInt32(0))
-            },
-            new BsonDocument
-            {
+            ],
+            [
                 new("Doors0", new BsonInt32(1)),
                 new("Version", new BsonString("0.0.0"))
-            },
-            new BsonDocument
-            {
+            ],
+            [
                 new("Doors1", new BsonInt32(2)),
                 new("Version", new BsonString("0.0.1"))
-            },
-            new BsonDocument
-            {
+            ],
+            [
                 new("Doors2", new BsonInt32(3)),
                 new("Version", new BsonString("0.0.2"))
-            }
-        });
+            ]
+        ]);
 
         var asyncCursor = await testDocumentCollection
             .FindAsync(FilterDefinition<TestClassWithTwoMigrationMiddleVersion>.Empty);
         List<TestClassWithTwoMigrationMiddleVersion> documents = await asyncCursor.ToListAsync();
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(documents, Has.Count.EqualTo(4));
             Assert.That(
                 documents.Select(d => d.Version.ToString()),
                 Is.All.EqualTo("0.0.1"));
 
-            Assert.That(documents[0].Doors1, Is.EqualTo(0));
+            Assert.That(documents[0].Doors1, Is.Zero);
             Assert.That(documents[1].Doors1, Is.EqualTo(1));
             Assert.That(documents[2].Doors1, Is.EqualTo(2));
             Assert.That(documents[3].Doors1, Is.EqualTo(3));
-        });
+        }
     }
 
 

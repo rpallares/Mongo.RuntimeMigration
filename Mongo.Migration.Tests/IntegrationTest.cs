@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Mongo.Migration.Tests;
 
 [TestFixture]
-public class IntegrationTest
+public abstract class IntegrationTest
 {
     private const string DatabaseName = "IntegrationTest";
     private const string CollectionName = "Test";

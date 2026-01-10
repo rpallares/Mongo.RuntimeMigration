@@ -85,13 +85,13 @@ public class PerformanceTestOnStartup
             var versionedCollection = client.GetDatabase(DatabaseName)
                 .GetCollection<TestDocumentWithTwoMigrationHighestVersion>(CollectionName);
             var versionedResult = await (await versionedCollection.FindAsync(_ => true)).ToListAsync();
-            return versionedResult.Cast<object>().ToList();
+            return [.. versionedResult.Cast<object>()];
         }
 
         var collection = client.GetDatabase(DatabaseName)
             .GetCollection<TestClassNoMigration>(CollectionName);
         var result = await (await collection.FindAsync(_ => true)).ToListAsync();
-        return result.Cast<object>().ToList();
+        return [.. result.Cast<object>()];
     }
 
     private static async Task AddDocumentsToCacheAsync()

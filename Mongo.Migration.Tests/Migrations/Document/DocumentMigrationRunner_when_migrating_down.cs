@@ -24,11 +24,11 @@ internal class DocumentMigrationRunnerWhenMigratingDown : IntegrationTest
         runner.Run(typeof(TestDocumentWithTwoMigration), document);
 
         // Assert
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(document.Names.ToList()[1], Is.EqualTo("Dors"));
             Assert.That(document.Values.ToList()[0].AsString, Is.EqualTo("0.0.0"));
-        });
+        }
     }
 
     [Test]
@@ -46,10 +46,10 @@ internal class DocumentMigrationRunnerWhenMigratingDown : IntegrationTest
         runner.Run(typeof(TestDocumentWithTwoMigrationMiddleVersion), document);
 
         // Assert
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(document.Names.ToList()[1], Is.EqualTo("Doors1"));
             Assert.That(document.Values.ToList()[0].AsString, Is.EqualTo("0.0.1"));
-        });
+        }
     }
 }

@@ -13,9 +13,7 @@ namespace Mongo.Migration.Tests;
 [SetUpFixture]
 public sealed class TestcontainersContext
 {
-    private static readonly Lazy<MongoDbContainer> s_lazyMongoDbContainer = new(() =>
-        new MongoDbBuilder().Build()
-        );
+    private static readonly Lazy<MongoDbContainer> s_lazyMongoDbContainer = new(() => new MongoDbBuilder("mongo:8").Build());
 
     private static ServiceProvider? s_provider;
 
