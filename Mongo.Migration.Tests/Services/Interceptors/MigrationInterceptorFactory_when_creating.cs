@@ -19,7 +19,7 @@ internal class MigrationInterceptorFactoryWhenCreating : IntegrationTest
         IBsonSerializer serializer = serializerProvider.GetSerializer(typeof(TestDocumentWithOneMigration));
 
         // Assert
-        Assert.That(serializer, Is.TypeOf(typeof(MigrationDocumentSerializer<TestDocumentWithOneMigration>)));
+        Assert.That(serializer, Is.TypeOf<MigrationDocumentSerializer<TestDocumentWithOneMigration>>());
     }
 
     [Test]
@@ -45,6 +45,6 @@ internal class MigrationInterceptorFactoryWhenCreating : IntegrationTest
         IBsonSerializer serializer = serializerProvider.GetSerializer(typeof(TestClassWithTwoMigrationMiddleVersion));
 
         // Assert
-        Assert.That(serializer, Is.TypeOf(typeof(MigrationReflexionSerializer<TestClassWithTwoMigrationMiddleVersion>)));
+        Assert.That(serializer, Is.TypeOf<MigrationReflexionSerializer<TestClassWithTwoMigrationMiddleVersion>>());
     }
 }

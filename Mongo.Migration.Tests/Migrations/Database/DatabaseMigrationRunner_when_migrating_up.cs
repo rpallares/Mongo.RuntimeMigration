@@ -22,13 +22,13 @@ internal class DatabaseMigrationRunnerWhenMigratingUp : DatabaseIntegrationTest
         // Assert
         var migrations = GetMigrationHistory();
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(migrations, Is.Not.Empty);
             Assert.That(migrations[0].Version.ToString(), Is.EqualTo("0.0.1"));
             Assert.That(migrations[1].Version.ToString(), Is.EqualTo("0.0.2"));
             Assert.That(migrations[2].Version.ToString(), Is.EqualTo("0.0.3"));
-        });
+        }
     }
 
     [Test]
@@ -45,11 +45,11 @@ internal class DatabaseMigrationRunnerWhenMigratingUp : DatabaseIntegrationTest
         // Assert
         var migrations = GetMigrationHistory();
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(migrations, Is.Not.Empty);
             Assert.That(migrations[2].Version.ToString(), Is.EqualTo("0.0.3"));
-        });
+        }
     }
 
     [Test]
@@ -71,12 +71,12 @@ internal class DatabaseMigrationRunnerWhenMigratingUp : DatabaseIntegrationTest
         // Assert
         var migrations = GetMigrationHistory();
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(migrations, Is.Not.Empty);
             Assert.That(migrations[0].Version.ToString(), Is.EqualTo("0.0.1"));
             Assert.That(migrations[1].Version.ToString(), Is.EqualTo("0.0.2"));
             Assert.That(migrations[2].Version.ToString(), Is.EqualTo("0.0.3"));
-        });
+        }
     }
 }

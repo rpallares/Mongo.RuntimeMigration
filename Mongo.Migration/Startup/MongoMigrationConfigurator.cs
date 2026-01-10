@@ -15,7 +15,7 @@ public class MongoMigrationConfigurator
     {
         MongoMigrationSettings = new MongoMigrationSettings();
         MongoMigrationStartupSettings = new MongoMigrationStartupSettings();
-        RuntimeMigrationDictionary = new Dictionary<Type, DocumentVersion>();
+        RuntimeMigrationDictionary = [];
     }
 
     public MongoMigrationConfigurator SetVersionFieldName(string fieldName)
