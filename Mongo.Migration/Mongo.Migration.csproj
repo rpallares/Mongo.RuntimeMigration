@@ -16,9 +16,9 @@
 	<PropertyGroup>
 		<PackageId>Mongo.RuntimeMigration</PackageId>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/rpallares/Mongo.Migration</RepositoryUrl>
+		<RepositoryUrl>https://github.com/rpallares/Mongo.RuntimeMigration/</RepositoryUrl>
 		<Authors>rpallares</Authors>
-		<Description>Mongo.Migration is designed for the MongoDB.Driver to migrate documents easily and on-the-fly</Description>
+		<Description>Mongo.RuntimeMigration is designed for the MongoDB.Driver to migrate documents easily and on-the-fly</Description>
 		<PackageTags>mongo, library, migration</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -33,4 +33,5 @@
 	<ItemGroup>
 		<InternalsVisibleTo Include="Mongo.Migration.Tests" />
 	</ItemGroup>
+
 </Project>
