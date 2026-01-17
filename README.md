@@ -1,7 +1,7 @@
-[![GitHub License](https://img.shields.io/github/license/rpallares/Mongo.Migration)]()
+[![GitHub License](https://img.shields.io/github/license/rpallares/Mongo.RuntimeMigration)](https://github.com/rpallares/Mongo.RuntimeMigration/tree/master?tab=MIT-1-ov-file)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Mongo.RuntimeMigration)](https://www.nuget.org/packages/Mongo.RuntimeMigration/)
 [![NuGet](https://img.shields.io/nuget/v/Mongo.RuntimeMigration)](https://www.nuget.org/packages/Mongo.RuntimeMigration/)
-[![GitHub last commit](https://img.shields.io/github/last-commit/rpallares/Mongo.Migration)](https://github.com/rpallares/Mongo.Migration/commits/master/)
+[![GitHub last commit](https://img.shields.io/github/last-commit/rpallares/Mongo.RuntimeMigration)](https://github.com/rpallares/Mongo.RuntimeMigration/commits/master/)
 
 # Mongo.RuntimeMigration
 
@@ -10,7 +10,7 @@
 Mongo.RuntimeMigration is designed for the [MongoDB C# Driver](https://github.com/mongodb/mongo-csharp-driver) to migrate your documents easily and on-the-fly.
 No more downtime for schema-migrations. Just write small and simple `migrations`.
 
-Version Mongo.RuntimeMigration is a code modernization and simplification release of [SRoddis/Mongo.Migration](https://github.com/SRoddis/Mongo.Migration). It also has a strong focus on performance.  
+Version Mongo.RuntimeMigration is a code modernization and simplification release of [SRoddis/Mongo.Migration](https://github.com/SRoddis/Mongo.Migration).
 
 The library is still based on the official [MongoDB.Driver](https://www.mongodb.com/docs/drivers/csharp/) (3.5.2+) and supports the following 3 types of migration:
 
@@ -201,40 +201,6 @@ public class Car : IDocument { }
 # Suggestions
 
 Deploy the migrations in a separate artifact. Otherwise, you lose the ability to downgrade in case of a rollback.
-
-# Performance
-
-The performance is measured on every push to the repository with a small performance-test.  
-It measures the time MongoDB needs to insert and read `n documents` (5000) with and without Mongo.RuntimeMigration. The difference is asserted and should be not higher than a given tolerance (150ms).
-
-Example output of the automated test:
-```bash
-MongoDB: 21ms, Mongo.RuntimeMigration: 210ms, Diff: 189ms (Tolerance: 600ms), Documents: 5000, Migrations per Document: 2
-```
-
-After bigger changes the code is analyzed with profiling tools to check for performance or memory problems.
-
-Performance is also measured manually for runtime migration which has benefited from a big performance gain since version 5.0.0.
-Example output of the automated test:
-```bash
-vanilla
-- 1_000 => 19 ms
-- 10_000 => 38 ms
-- 50_000 => 159 ms
-
-no migration:
-- 1_000 => 30 ms
-- 10_000 => 95 ms
-- 50_000 => 175 ms
-
-2 migrations:
-- 1_000 => 68 ms
-- 10_000 => 196 ms
-- 50_000 => 768 ms
-```
-
-**Note:** These performance tests are not benchmark and results could vary.  
-They should rely on BenchMarkDotNet and use in memory streams instead of mongo docker image, but it's indicative.
 
 # Release notes
 
