@@ -34,7 +34,7 @@ namespace Mongo.Migration.Migrations.Document
                 documentVersionService,
                 migrationRunner)
         {
-            if (settings.ConnectionString == null && settings.Database == null || settings.ClientSettings == null)
+            if ((settings.ConnectionString == null || settings.ClientSettings == null) && settings.Database == null)
             {
                 throw new MongoMigrationNoMongoClientException();
             }

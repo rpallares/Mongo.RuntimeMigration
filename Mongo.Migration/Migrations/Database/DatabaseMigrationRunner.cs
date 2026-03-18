@@ -97,6 +97,11 @@ namespace Mongo.Migration.Migrations.Database
                 {
                     break;
                 }
+                else if (migration.Version > currentVersion) // a migration that was never applied
+                {
+                    this._logger.LogInformation("Skipping Migration Down: {0}:{1} because current version is {2} ", migration.GetType().ToString(), migration.Version, currentVersion);
+                    continue;
+                }
 
                 this._logger.LogInformation("Database Migration Down: {0}:{1} ", migration.GetType().ToString(), migration.Version);
 
