@@ -1,16 +1,14 @@
-[![GitHub License](https://img.shields.io/github/license/rpallares/Mongo.RuntimeMigration)](https://github.com/rpallares/Mongo.RuntimeMigration/tree/master?tab=MIT-1-ov-file)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/Mongo.RuntimeMigration)](https://www.nuget.org/packages/Mongo.RuntimeMigration/)
-[![NuGet](https://img.shields.io/nuget/v/Mongo.RuntimeMigration)](https://www.nuget.org/packages/Mongo.RuntimeMigration/)
-[![GitHub last commit](https://img.shields.io/github/last-commit/rpallares/Mongo.RuntimeMigration)](https://github.com/rpallares/Mongo.RuntimeMigration/commits/master/)
+[![GitHub License](https://img.shields.io/github/license/sroddis/Mongo.Migration)](https://github.com/sroddis/Mongo.Migration/tree/master?tab=MIT-1-ov-file)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Mongo.Migration)](https://www.nuget.org/packages/Mongo.Migration/)
+[![NuGet](https://img.shields.io/nuget/v/Mongo.Migration)](https://www.nuget.org/packages/Mongo.Migration/)
+[![GitHub last commit](https://img.shields.io/github/last-commit/sroddis/Mongo.Migration)](https://github.com/sroddis/Mongo.Migration/commits/master/)
 
-# Mongo.RuntimeMigration
+# Mongo.Migration
 
 ![](https://media.giphy.com/media/10tLOFXDFDjgQM/giphy.gif)
 
-Mongo.RuntimeMigration is designed for the [MongoDB C# Driver](https://github.com/mongodb/mongo-csharp-driver) to migrate your documents easily and on-the-fly.
+Mongo.Migration is designed for the [MongoDB C# Driver](https://github.com/mongodb/mongo-csharp-driver) to migrate your documents easily and on-the-fly.
 No more downtime for schema-migrations. Just write small and simple `migrations`.
-
-Version Mongo.RuntimeMigration is a code modernization and simplification release of [SRoddis/Mongo.Migration](https://github.com/SRoddis/Mongo.Migration).
 
 The library is still based on the official [MongoDB.Driver](https://www.mongodb.com/docs/drivers/csharp/) (3.5.2+) and supports the following 3 types of migration:
 
@@ -29,10 +27,10 @@ The library is still based on the official [MongoDB.Driver](https://www.mongodb.
 
 # Installation
 
-Install via nuget [Mongo.RuntimeMigration](https://www.nuget.org/packages/Mongo.RuntimeMigration):  
+Install via nuget [Mongo.Migration](https://www.nuget.org/packages/Mongo.Migration):  
 
 ```shell
-dotnet add package Mongo.RuntimeMigration
+dotnet add package Mongo.Migration
 ```
 
 # Register migration services
@@ -116,7 +114,7 @@ You can still execute them at startup to migrate your database but this **is not
     }
     ```
 3. `(Optional)` If you choose to put your migrations into an extra project, 
-add the suffix `".MongoMigrations"` to the name and make sure it is referenced in the main project. By convention Mongo.RuntimeMigration collects all .dlls named like that in your bin folder.
+add the suffix `".MongoMigrations"` to the name and make sure it is referenced in the main project. By convention Mongo.Migration collects all .dlls named like that in your bin folder.
     
 Compile, run and enjoy!
 
@@ -183,7 +181,7 @@ public class Car : IDocument { }
 ## CollectionLocation
 
 Add `CollectionLocation` attribute if you want to migrate your collections at startup with document migration.  
-This attribute tells Mongo.RuntimeMigration where to find your Collections.
+This attribute tells Mongo.Migration where to find your Collections.
 
 ```csharp
 [CollectionLocation("Car")]
@@ -244,8 +242,4 @@ Consider also there was a lot of changes between the last 3.1.4 officially publi
 2. Add real benchmark for runtime migrations
 
 # License
-Mongo.RuntimeMigration is licensed under [MIT](http://www.opensource.org/licenses/mit-license.php "Read more about the MIT license form"). Refer to [LICENSE.md](LICENSE.md) for more information.
-
-It has been forked from [SRoddis/Mongo.Migration](https://github.com/SRoddis/Mongo.Migration) that is no longer maintained.  
-That's why the nuget name is `Mongo.RuntimeMigration` whereas namespace is still `Mongo.Migration`.  
-Thanks to @SRoddis for that library.
+Mongo.Migration is licensed under [MIT](http://www.opensource.org/licenses/mit-license.php "Read more about the MIT license form"). Refer to [LICENSE.md](LICENSE.md) for more information.

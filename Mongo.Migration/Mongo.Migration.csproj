@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
+		<TargetFrameworks>net10.0;net8.0</TargetFrameworks>
 		<LangVersion>14.0</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -14,11 +14,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>Mongo.RuntimeMigration</PackageId>
+		<PackageId>Mongo.Migration</PackageId>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/rpallares/Mongo.RuntimeMigration/</RepositoryUrl>
-		<Authors>rpallares</Authors>
-		<Description>Mongo.RuntimeMigration is designed for the MongoDB.Driver to migrate documents easily and on-the-fly</Description>
+		<RepositoryUrl>https://github.com/sroddis/Mongo.Migration/</RepositoryUrl>
+		<Authors>sroddis,rpallares</Authors>
+		<Description>Mongo.Migration is designed for the MongoDB.Driver to migrate documents easily and on-the-fly</Description>
 		<PackageTags>mongo, library, migration</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
